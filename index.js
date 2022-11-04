@@ -30,15 +30,16 @@ app.post('/cadastrar', (req, res) => {
     let SQL = "INSERT INTO carros(id, marca, modelo, cor, ano_fabricacao, ano_modelo,tipo_cambio) VALUES('',?, ?, ?, ?, ?, ?)"
     db.query(SQL,[marca, modelo, cor, ano, ano_modelo, cambio],(err, result) => {
         console.log(err)
-        // console.log(marca)
     });
 })
 
-// app.get('/', (req, res) => {
-//     let SQL = "INSERT INTO carros(id, marca, modelo, cor, ano_fabricacao, ano_modelo,tipo_cambio) VALUE('','a','b','c','22','23','manual')"
-// });
-
-// connection.end();
+app.get('/getCarros', (req, res) => {
+    let SQL = "SELECT * FROM carros"
+    db.query(SQL, (err,result)=>{
+        if(err) console.log(err);
+        else res.send(result);
+    })
+})
 
 
 app.listen(3003, () => {
